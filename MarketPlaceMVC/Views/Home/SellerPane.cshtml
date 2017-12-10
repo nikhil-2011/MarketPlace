@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MarketPlaceMVC.Models.CustomItem>
+
+@{
+    ViewBag.Title = "SellerPane";
+}
+
+<h2>Seller Pane</h2>
+<script>
+        history.pushState(null, null, document.title);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.title);
+        });
+</script>
+<p style="font-size:medium">
+    @Html.ActionLink("Home", "LoginPage") |
+    @Html.ActionLink("Add Catalog", "AddItem") |
+    
+    @Html.ActionLink("Categories", "CategoryIndex")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Item Name</label>
+        </th>
+        <th>
+            <label>Price</label>
+        </th>
+        <th>
+            <label>Quantity</label>
+        </th>
+        <th>
+            <label>Sub-Category</label>
+        </th>
+        <th>
+            <label>Category</label>
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.itemname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subcatname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.catname)
+        </td>
+        <td>
+            @Html.HiddenFor(modelItem=>item.itemid)
+        </td>
+       <td>
+           @Html.ActionLink("Edit", "EditItem", item)
+       </td>
+       
+    </tr>
+}
+
+</table>

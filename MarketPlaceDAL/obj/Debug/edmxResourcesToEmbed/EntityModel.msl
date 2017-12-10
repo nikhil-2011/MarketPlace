@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MarketPlaceDBContext">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Model.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="catid" ColumnName="catid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="addedby" ColumnName="addedby" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="Model.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="itemid" ColumnName="itemid" />
+          <ScalarProperty Name="catid" ColumnName="catid" />
+          <ScalarProperty Name="subid" ColumnName="subid" />
+          <ScalarProperty Name="addedby" ColumnName="addedby" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategories">
+      <EntityTypeMapping TypeName="Model.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategory">
+          <ScalarProperty Name="catid" ColumnName="catid" />
+          <ScalarProperty Name="subid" ColumnName="subid" />
+          <ScalarProperty Name="subname" ColumnName="subname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetUserId" FunctionName="Model.Store.usp_GetUserId" />
+    <FunctionImportMapping FunctionImportName="usp_GetCategoryId" FunctionName="Model.Store.usp_GetCategoryId" />
+    <FunctionImportMapping FunctionImportName="usp_GetItemId" FunctionName="Model.Store.usp_GetItemId" />
+    <FunctionImportMapping FunctionImportName="usp_GetSubCatId" FunctionName="Model.Store.usp_GetSubCatId" />
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="Model.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="itemname" ColumnName="itemname" />
+          <ScalarProperty Name="itemid" ColumnName="itemid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="cartid" ColumnName="cartid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="Model.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="itemname" ColumnName="itemname" />
+          <ScalarProperty Name="itemid" ColumnName="itemid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetCartId" FunctionName="Model.Store.usp_GetCartId" />
+    <FunctionImportMapping FunctionImportName="usp_GetOrderId" FunctionName="Model.Store.usp_GetOrderId" />
+  </EntityContainerMapping>
+</Mapping>

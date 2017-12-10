@@ -1,0 +1,11 @@
+insert into users values('U125','nikhil@gmail.com','nikhil123',8130069569)
+insert into users values('U124','anand@gmail.com','anand123',7988361371)
+
+insert into Categories values('C101','fashion','U125','Enabled')
+insert into Categories values('C102','electronics','U124','Enabled')
+
+insert into SubCategory values('C101','S111','women')
+insert into SubCategory values('C102','S112','mobile')	
+
+insert into Items values('I112','C101','S111','U125','tshirt','500',2)
+insert into Items values('I110','C102','S112','U124','iphone','40000',4)

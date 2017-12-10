@@ -1,0 +1,41 @@
+﻿<html>
+
+<head>
+    <title>Login Page</title>
+</head>
+
+<body>
+    <script>
+        history.pushState(null, null, document.title);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.title);
+        });
+    </script>
+    <form name="loginForm" method="post" action="/Home/LoginUser">
+        <table width="20" bgcolor="0099CC" align="center">
+             
+            <tr style="height:100px">
+                <td colspan=2><center><font size=6><b>Welcome to Market</b></font></center></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td style="font-size:20px">Username:</td>
+                <td><input type="text" size=25 name="userid"></td>
+            </tr>
+
+            <tr>
+                <td style="font-size:20px">Password:</td>
+                <td><input type="Password" size=25 name="pwd"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td style="column-span:all"><input type="submit" value="Login">
+                
+                    @Html.ActionLink("Sign Up", "SignUP")
+                </td>
+            </tr>
+
+        </table>
+    </form>
+    </body></html>

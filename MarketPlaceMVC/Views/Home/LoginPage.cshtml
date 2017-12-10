@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h2>My Account</h2>
+<br />
+<script>
+        history.pushState(null, null, document.title);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.title);
+        });
+</script>
+<table style="font-size:medium">
+    <tr>
+        <td>@Html.ActionLink("Buyer Pane", "BuyerPane") |</td>
+        <td>@Html.ActionLink("Seller Pane", "SellerPane")</td>
+
+        <td width="700px"></td>
+        <td>User: @Session["username"] |</td>
+        
+      <td>@Html.ActionLink("Logout", "LogoutUser")</td> 
+    </tr>
+</table>

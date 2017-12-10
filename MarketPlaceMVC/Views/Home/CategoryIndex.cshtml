@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MarketPlaceMVC.Models.Category>
+
+@{
+    ViewBag.Title = "CategoryList";
+}
+<script>
+        history.pushState(null, null, document.title);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.title);
+        });
+</script>
+<h2>CategoryList</h2>
+<p style="font-size:medium">
+    @Html.ActionLink("Home", "LoginPage", "Home")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Category ID")
+        </th>
+        <th>
+            @Html.DisplayName("Category")
+        </th>
+        
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.catid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.ActionLink("Change Status", "ChangeStatus", item)
+
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,120 @@
+create table Users(
+userid char(5) primary key,
+username varchar(20),
+userpassword varchar(20),
+contact int);
+
+create table Categories(
+catid char(5) primary key,
+name varchar(20),
+addedby char(5) references Users(userid),
+status varchar(10) 
+)
+
+create table SubCategory(
+catid char(5) references Categories(catid),
+subid char(5),
+subname varchar(20),
+primary key (catid,subid) 
+)
+
+create table Items(
+itemid char(5),
+catid char(5),
+subid char(5),
+addedby char(5),
+name varchar(20),
+price decimal(10,2),
+quantity int,
+primary key(itemid,catid,subid,addedby)
+)
+
+create table Cart(
+cartid char(5),
+userid char(5),
+itemid char(5),
+itemname varchar(20),
+quantity int,
+price decimal(10,2),
+primary key(cartid,userid)
+)
+
+create table Orders(
+orderid char(5),
+userid char(5) ,
+itemid char(5) ,
+itemname varchar(20),
+quantity int,
+price decimal(10,2),
+primary key (orderid,userid)
+)
+
+create sequence seq_User start with 100;
+
+create sequence seq_Cart start with 100;
+
+create sequence seq_Order start with 100;
+
+create sequence seq_Item start with 100;
+
+create sequence seq_SubCategory start with 100;
+
+create proc usp_GetCartId (
+@cartid varchar(10) out
+)
+as
+begin
+ set @cartid =  'C'+ convert(varchar(3),(next value for seq_Cart))
+ return 1
+ end
+
+create proc usp_GetOrderId (
+@orderid varchar(10) out
+)
+as
+begin
+ set @orderid =  'O'+ convert(varchar(3),(next value for seq_Order))
+ return 1
+ end
+
+create proc usp_GetUserId (
+@userid varchar(10) out
+)
+as
+begin
+ set @userid =  'U'+ convert(varchar(3),(next value for seq_User))
+ return 1
+ end
+
+create sequence seq_Category start with 100;
+
+create proc usp_GetCategoryId (
+@catid varchar(10) out
+)
+as
+begin
+ set @catid =  'C'+ convert(varchar(3),(next value for seq_Category))
+ return 1
+ end
+
+
+
+create proc usp_GetSubCatId (
+@subid varchar(10) out
+)
+as
+begin
+ set @subid =  'S'+ convert(varchar(3),(next value for seq_SubCategory))
+ return 1
+ end
+
+ 
+
+create proc usp_GetItemId (
+@itemid varchar(10) out
+)
+as
+begin
+ set @itemid =  'I'+ convert(varchar(3),(next value for seq_Item))
+ return 1
+ end

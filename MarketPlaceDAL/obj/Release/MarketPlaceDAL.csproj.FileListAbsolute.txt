@@ -1,0 +1,10 @@
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\MarketPlaceDAL.dll.config
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\MarketPlaceDAL.dll
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\MarketPlaceDAL.pdb
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\EntityFramework.dll
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\EntityFramework.SqlServer.dll
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\EntityFramework.xml
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\bin\Release\EntityFramework.SqlServer.xml
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\obj\Release\MarketPlaceDAL.csprojResolveAssemblyReference.cache
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\obj\Release\MarketPlaceDAL.dll
+F:\Visual Studio\MarketPlace\MarketPlaceDAL\obj\Release\MarketPlaceDAL.pdb

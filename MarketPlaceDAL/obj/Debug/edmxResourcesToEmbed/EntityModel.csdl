@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="catid" />
+    </Key>
+    <Property Name="catid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="addedby" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Categorie__added__145C0A3F" FromRole="Categories" ToRole="Users" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Items__catid__1A14E395" FromRole="Categories" ToRole="Items" />
+    <NavigationProperty Name="SubCategories" Relationship="Self.FK__SubCatego__catid__173876EA" FromRole="Categories" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="itemid" />
+      <PropertyRef Name="catid" />
+      <PropertyRef Name="subid" />
+      <PropertyRef Name="addedby" />
+    </Key>
+    <Property Name="itemid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="catid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="subid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="addedby" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Items__catid__1A14E395" FromRole="Items" ToRole="Categories" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Items__addedby__1B0907CE" FromRole="Items" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="catid" />
+      <PropertyRef Name="subid" />
+    </Key>
+    <Property Name="catid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="subid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="subname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__SubCatego__catid__173876EA" FromRole="SubCategory" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="contact" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK__Categorie__added__145C0A3F" FromRole="Users" ToRole="Categories" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Items__addedby__1B0907CE" FromRole="Users" ToRole="Items" />
+  </EntityType>
+  <Association Name="FK__Categorie__added__145C0A3F">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="addedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Items__catid__1A14E395">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="Items" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="catid" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubCatego__catid__173876EA">
+    <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="catid" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Items__addedby__1B0907CE">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Items" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="addedby" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MarketPlaceDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Categorie__added__145C0A3F" Association="Self.FK__Categorie__added__145C0A3F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Items__catid__1A14E395" Association="Self.FK__Items__catid__1A14E395">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubCatego__catid__173876EA" Association="Self.FK__SubCatego__catid__173876EA">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="SubCategory" EntitySet="SubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Items__addedby__1B0907CE" Association="Self.FK__Items__addedby__1B0907CE">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <FunctionImport Name="usp_GetUserId">
+      <Parameter Name="userid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetCategoryId">
+      <Parameter Name="catid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetItemId">
+      <Parameter Name="itemid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetSubCatId">
+      <Parameter Name="subid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Carts" EntityType="Model.Cart" />
+    <EntitySet Name="Orders" EntityType="Model.Order" />
+    <FunctionImport Name="usp_GetCartId">
+      <Parameter Name="cartid" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_GetOrderId">
+      <Parameter Name="orderid" Mode="InOut" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cartid" />
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="cartid" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="userid" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="itemid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="itemname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderid" />
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="orderid" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="userid" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="itemid" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="itemname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" />
+  </EntityType>
+</Schema>

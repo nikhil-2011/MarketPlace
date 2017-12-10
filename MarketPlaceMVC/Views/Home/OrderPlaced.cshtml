@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "UserExists";
+}
+
+<h2>Your order has been placed.</h2>
+<script>
+        history.pushState(null, null, document.title);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.title);
+        });
+</script>
+<p style="font-size:medium">
+    @Html.ActionLink("View Orders", "ViewOrder") |
+    @Html.ActionLink("Home","LoginPage")
+</p>
+
